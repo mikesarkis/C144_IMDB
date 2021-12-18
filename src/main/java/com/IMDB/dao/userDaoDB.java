@@ -58,10 +58,15 @@ public class userDaoDB implements userDao{
     @Override
     public void remove_User(User temp) {
                
+        List<Movie> list_movies =   get_all_movies(temp.getId());     
         final String delete_relation = "DELETE * FROM movie_user WHERE userID = ?";
         jdbc.update(delete_relation, temp.getId());
         final String delete_user = "DELETE * FROM user WHERE id = ?";
         jdbc.update(delete_user, temp.getId());
+        for (Movie movie: list_movies)
+        {
+            update_movie_rating(movie.getId());
+        }
     }
 
     @Override
