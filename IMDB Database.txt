@@ -1,0 +1,59 @@
+drop database IF exists IMDB;
+
+create database IMDB;
+
+use IMDB;
+
+create table movie(
+    id int primary key auto_increment,
+    title varchar(80) not null,
+    director varchar(80) not null,
+    story varchar(80) not null,
+    rating double ,
+    mpprating varchar(2) not null,
+    runtime varchar(20) not null,
+    production_year varchar(4) not null);
+    
+create table company(
+    id int primary key auto_increment,
+    name varchar(50) not null,
+    address varchar(180) not null);
+  
+create table location(
+   id int primary key auto_increment,
+   streetnumber int not null,
+   street varchar(120) not null,
+   country varchar (50) not null,
+   city varchar(60) not null);
+   
+   
+create table user(
+   id int primary key auto_increment,
+   username varchar (80) not null,
+   password varchar(80) not null,
+   email varchar(80) not null,
+   isAdmin boolean not null);
+   
+create table movie_company(
+   id int primary key auto_increment,
+   movieID int not null,
+   productionCompanyID int not null,
+   FOREIGN KEY (movieID) REFERENCES movie(id),
+   FOREIGN KEY (productionCompanyID) REFERENCES company(id));
+ 
+ create table movie_location(
+    id int primary key auto_increment,
+    movieID int not null,
+    FilmingLocationID int not null,
+	year varchar(50) not null,
+    FOREIGN KEY (movieID) REFERENCES movie(id),
+    FOREIGN KEY (FilmingLocationID) REFERENCES location(id));
+    
+create table  movie_user(
+    id int primary key auto_increment,
+    movieID int not null,
+    userID int not null,
+    rating double not null,
+    FOREIGN KEY (movieID) REFERENCES movie(id),
+    FOREIGN KEY (userID) REFERENCES user(id));
+
