@@ -94,6 +94,18 @@ public class userDaoDB implements userDao{
         update_movie_rating(movieid);
         
     }
+    @Override
+    public void edit_rate_movie(int movieid, int userid, double rating) {
+        final String edit_rate_movie = "UPDATE movie_user SET rating = ? "
+               +" WHERE movieID = ? AND userID = ? ";
+        jdbc.update(edit_rate_movie, rating , movieid , userid );
+    }
+
+    @Override
+    public void Remove_rate_movie(int movieid, int userid) {
+        final String delete_rating = "DELETE * FROM movie_user WHERE movieid = ? AND userid = ? ";
+        jdbc.update(delete_rating, movieid, userid);
+    }
 
     @Override
     public List<Movie> get_all_movies(int id) {
