@@ -19,6 +19,8 @@ public interface userDao {
     public void edit_User(int id, User temp);
     public User get_User_by_id(int id);
     public void rate_movie(int movieid, int userid, double rating);
+    public void edit_rate_movie(int movieid, int userid, double rating);
+    public void Remove_rate_movie(int movieid, int userid);
     public List<User> get_all_Users();
     public List<Movie> get_all_movies(int id);
     
