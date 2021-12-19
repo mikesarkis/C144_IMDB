@@ -22,6 +22,7 @@ public interface movieDao {
     public void remove_Movie(Movie temp);
     public void edit_Movie(int id, Movie temp);
     public Movie get_Movie_by_id(int id);
+    public List<Movie> get_Movie_by_title(String title);
     public List<Movie> get_all_Movies();
     public List<Location> get_all_Locations(int id);
     public List<Company> get_all_compaines(int id);
