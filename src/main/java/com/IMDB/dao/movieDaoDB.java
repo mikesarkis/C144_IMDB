@@ -90,6 +90,12 @@ public class movieDaoDB implements movieDao{
         Movie temp = jdbc.queryForObject(get_Movie , new MovieMapper(), id);
         return temp;
     }
+    @Override
+    public List<Movie> get_Movie_by_title(String title) {
+        final String get_Movie_by_title = "SELECT * FROM movie  WHERE title=? ";
+        List<Movie> movie_by_title_list = jdbc.query(get_Movie_by_title , new MovieMapper(), title);
+        return movie_by_title_list; 
+    }
 
     @Override
     public List<Movie> get_all_Movies() {
