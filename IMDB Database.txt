@@ -12,7 +12,7 @@ create table movie(
     vote_average DOUBLE ,
     vote_count int,
     original_language Varchar(10) NOT NULL,
-	backdrop_path Varchar(25),
+    backdrop_path Varchar(25),
     release_date Varchar(30) NOT NULL,
     adult boolean NOT NULL,
     video boolean NOT NULL,
