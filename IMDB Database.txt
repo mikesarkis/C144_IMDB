@@ -7,12 +7,16 @@ use IMDB;
 create table movie(
     id int primary key auto_increment,
     title varchar(80) not null,
-    director varchar(80) not null,
-    story varchar(80) not null,
-    rating double ,
-    mpprating varchar(2) not null,
-    runtime varchar(20) not null,
-    production_year varchar(4) not null);
+    original_title Varchar(80) NOT NULL,
+    overview Varchar(500) NOT NULL,
+    vote_average DOUBLE ,
+    vote_count int,
+    original_language Varchar(10) NOT NULL,
+	backdrop_path Varchar(25),
+    release_date Varchar(30) NOT NULL,
+    adult boolean NOT NULL,
+    video boolean NOT NULL,
+    poster_path Varchar(30) NOT NULL);
     
 create table company(
     id int primary key auto_increment,
