@@ -41,12 +41,16 @@ public class movieDaoDB implements movieDao{
             Movie movie = new Movie();
             movie.setId(rs.getInt("id"));
             movie.setTitle(rs.getString("title"));
-            movie.setDirector(rs.getString("director"));
-            movie.setStory(rs.getString("story"));
-            movie.setRating(rs.getDouble("rating"));
-            movie.setMpprating(rs.getString("mpprating"));
-            movie.setProduction_year(rs.getString("production_year"));
-            movie.setRuntime(rs.getString("runtime"));
+            movie.setOriginal_title(rs.getString("original_title "));
+            movie.setOverview(rs.getString("overview"));
+            movie.setVote_average(rs.getDouble("vote_average"));
+            movie.setVote_count(rs.getInt("vote_count"));
+            movie.setOriginal_language(rs.getString("original_language"));
+            movie.setBackdrop_path(rs.getString("backdrop_path"));
+            movie.setRelease_date(rs.getString("release_date"));
+            movie.setAdult(rs.getBoolean("adult"));
+            movie.setVideo(rs.getBoolean("video"));
+            movie.setPoster_path(rs.getString("poster_path"));
             return movie;
         }
         
@@ -54,8 +58,8 @@ public class movieDaoDB implements movieDao{
 
     @Override
     public Movie add_Movie(Movie temp) {
-        final String insert_movie = "INSERT INTO movie(title,director,story,mpprating,runtime,production_year) "+ " VALUES(?,?,?,?,?,?)";
-        jdbc.update(insert_movie, temp.getTitle(), temp.getDirector(), temp.getStory(), temp.getMpprating(), temp.getRuntime(), temp.getProduction_year());
+        final String insert_movie = "INSERT INTO movie(title,original_title,overview,vote_average,vote_count ,original_language,backdrop_path,release_date,release_date,adult,video, poster_path   ) "+ " VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        jdbc.update(insert_movie, temp.getTitle(), temp.getOriginal_title(),temp.getOverview(), temp.getVote_average(), temp.getVote_count(), temp.getOriginal_language(), temp.getBackdrop_path(), temp.getRelease_date(), temp.isAdult(), temp.isVideo(), temp.getPoster_path());
         int newID = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         temp.setId(newID);
         return temp;
@@ -81,9 +85,9 @@ public class movieDaoDB implements movieDao{
 
     @Override
     public void edit_Movie(int id, Movie temp) {
-        final String update_movie = "UPDATE movie SET title = ? , director = ? , story = ? ,   mpprating = ? ,  runtime = ?,  production_year = ? "
+        final String update_movie = "UPDATE movie SET title = ? , original_title = ? , overview = ? ,   vote_average = ? ,  vote_count = ?,  original_language = ? , backdrop_path = ? , release_date = ? , adult = ?, video = ?,poster_path = ?  "
                 + " WHERE id = ?";
-        jdbc.update(update_movie, temp.getTitle(), temp.getDirector(), temp.getStory() , temp.getMpprating(), temp.getRuntime(), temp.getProduction_year() , id );
+        jdbc.update(update_movie, temp.getTitle(), temp.getOriginal_title(),temp.getOverview(), temp.getVote_average(), temp.getVote_count(), temp.getOriginal_language(), temp.getBackdrop_path(), temp.getRelease_date(), temp.isAdult(), temp.isVideo(), temp.getPoster_path() , id );
     }
 
     @Override
