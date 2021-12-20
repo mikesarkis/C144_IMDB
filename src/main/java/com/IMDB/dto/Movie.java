@@ -35,7 +35,7 @@ public class Movie {
         this.id = id;
     }
 
-    public double getRatring() {
+    public double getRating() {
         return rating;
     }
 

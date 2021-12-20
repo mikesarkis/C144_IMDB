@@ -13,7 +13,7 @@
   <body>
     <!-- Main Body of Page -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#"><img src="imdb.png" alt="IMDB" style="width:75px;height:50px;margin-left: 50px;"></a>
+  <a class="navbar-brand" href="index.html"><img src="imdb.png" alt="IMDB" style="width:75px;height:50px;margin-left: 50px;"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -57,21 +57,21 @@
                                 <th>Rating</th>
                                 <th>MppRating</th>
                                 <th>RuntTime</th>
-                                <th>Production Year</th>
+                                <th>Year</th>
                                 <th>Details</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="movie : ${Movies}">
-                                <td th:text="${movie.id}">Movie ID</td>
-                                <td th:text="${movie.title}">Movie  Title</td>
-                                <td th:text="${hero.story}">Movie  Story</td>
-                                <td th:text="${hero.director}">Movie Director</td>
-                                <td th:text="${hero.rating}">Movie Rating</td>
-                                <td th:text="${hero.Mpprating}">Movie RuntTime</td>
-                                <td th:text="${hero.runtime}">Movie Hero</td>
-                                <td th:text="${hero.production_year}">Movie Production Year</td>
-                                <td><a href="#" th:href="@{/MovieDetails(id=${movie.id})}">Details</a></td>
+                            <tr th:each="movie : ${movies}">
+                                <!--<td th:text="${movie.id}">Movie ID</td>-->
+                                <td th:text="${movie.title}">Title</td>
+                                <td th:text="${movie.story}">Story</td>
+                                <!--<td th:text="${hero.director}">Movie Director</td>-->
+                                <td th:text="${movie.rating}">Rating</td>
+                                <td th:text="${movie.production_year}">Date</td>
+                                <!--<td th:text="${hero.runtime}">Movie Hero</td>-->
+                                <!--<td th:text="${hero.production_year}">Movie Production Year</td>-->
+                                <!--<td><a href="#" th:href="@{/MovieDetails(id=${movie.id})}">Details</a></td>-->
                             </tr>
                         </tbody>
                     </table>

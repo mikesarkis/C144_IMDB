@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+/nbactions.xml
+
+
+
+src/main/resources/application.properties
+/src/main/java/com/IMDB/KeyHolder.java
