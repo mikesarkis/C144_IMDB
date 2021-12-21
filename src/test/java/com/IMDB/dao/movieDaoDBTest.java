@@ -75,19 +75,19 @@ public class movieDaoDBTest {
     public void tearDown() {
     }
 
-    @Test
-    public void testSomeMethod() {
-        Movie mov = new Movie();
-        mov.setTitle("godfather");
-        mov.setDirector("Copalla");
-        mov.setProduction_year("1972");
-        mov.setStory("movie about mafia");
-        mov.setMpprating("R");
-        mov.setRuntime("2h 55m");
-        Movie movfromdao = movdao.add_Movie(mov);
-        mov.setId(movfromdao.getId());
-        assertEquals(mov,movfromdao);
-        
-    }
+//    @Test
+//    public void testSomeMethod() {
+//        Movie mov = new Movie();
+//        mov.setTitle("godfather");
+//        mov.setDirector("Copalla");
+//        mov.setProduction_year("1972");
+//        mov.setStory("movie about mafia");
+//        mov.setMpprating("R");
+//        mov.setRuntime("2h 55m");
+//        Movie movfromdao = movdao.add_Movie(mov);
+//        mov.setId(movfromdao.getId());
+//        assertEquals(mov,movfromdao);
+//        
+//    }
     
 }

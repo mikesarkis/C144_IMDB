@@ -12,73 +12,62 @@
   </head>
   <body>
     <!-- Main Body of Page -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="index.html"><img src="imdb.png" alt="IMDB" style="width:75px;height:50px;margin-left: 50px;"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html"><img src="imdb.png" alt="IMDB" style="width:75px;height:50px;margin-left: 50px;"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Featured titles</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Content
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Movies</a>
-          <a class="dropdown-item" href="#">Tv Shows</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Contact Us</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search by title">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search by title</button>
-    </form>
-  </div>
-</nav>  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Featured titles</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Content
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Movies</a>
+                <a class="dropdown-item" href="#">Tv Shows</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Contact Us</a>
+            </li>
+          </ul>
+          <form action="search" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search by title">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search by title</button>
+          </form>
+        </div>
+      </nav>  
    
-                <div class="row m-4 border border-dark">
-                <div class="col text-center m-3">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>Story</th>
-                                <th>Director</th>
-                                <th>Rating</th>
-                                <th>MppRating</th>
-                                <th>RuntTime</th>
-                                <th>Year</th>
-                                <th>Details</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="movie : ${movies}">
-                                <!--<td th:text="${movie.id}">Movie ID</td>-->
-                                <td th:text="${movie.title}">Title</td>
-                                <td th:text="${movie.story}">Story</td>
-                                <!--<td th:text="${hero.director}">Movie Director</td>-->
-                                <td th:text="${movie.rating}">Rating</td>
-                                <td th:text="${movie.production_year}">Date</td>
-                                <!--<td th:text="${hero.runtime}">Movie Hero</td>-->
-                                <!--<td th:text="${hero.production_year}">Movie Production Year</td>-->
-                                <!--<td><a href="#" th:href="@{/MovieDetails(id=${movie.id})}">Details</a></td>-->
-                            </tr>
-                        </tbody>
-                    </table>
- 
-   
-                </div>
+        <div class="row m-4 border border-dark">
+        <div class="col text-center m-3">
+            <table class="table table-striped">
+                <thead>
+                    <tr class="text-left">
+                        <th width="15%">Title</th>
+                        <th width="60%">Synopsis</th>
+                        <th wdith="20%">Release Date</th>
+                        <th>Popularity</th>
+                    </tr>
+                </thead>
+                <tbody class="text-left">
+                    <tr th:each="movie : ${movies}">
+                        <td><a href="#" th:href="@{displayMovie(id=${movie.id})}" style="font-weight: bold;" th:text="${movie.title}">Title</a></td>
+                        <td th:text="${movie.overview}">Story</td>
+                        <td th:text="${movie.release_date}">Rating</td>
+                        <td th:text="${movie.popularity}">Popularity</td>
+                        <!--<td><a href="#" th:href="@{/MovieDetails(id=${movie.id})}">Details</a></td>-->
+                    </tr>
+                </tbody>
+            </table>
             </div>
+        </div>
     <!-- End main body -->
     
     <!-- Optional JavaScript -->
