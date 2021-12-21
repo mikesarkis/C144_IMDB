@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Add Movie</title>
+  </head>
+  <body>
+    <!-- Main Body of Page -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"><img src="imdb.png" alt="IMDB" style="width:75px;height:50px;margin-left: 50px;"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Featured">Featured titles</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Content
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="Movies">Movies</a>
+          <a class="dropdown-item" href="TV Shows">TV Shows</a>
+          <a class="dropdown-item" href="Companies">Companies</a>
+          <a class="dropdown-item" href="Locations">Filming Locations</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="Contact Us">Contact Us</a>
+      </li>
+    </ul>
+        <div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Login Form -->
+    <form>
+      <input type="text" id="Email" class="fadeIn second" name="Email" placeholder="Email">
+      <input type="text" id="Password" class="fadeIn third" name="Password" placeholder="Password">
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+    
+
+  </div>
+</div>
+   </nav> 
+           <h1 style="text-align:center;font-style: color: black" >Admin Area</h1> </br> 
+                <div class="row m-4 border border-dark">
+                <div class="col-3 text-center m-3">
+                    <span class="h3">Add Movie</span>
+                </div>
+                <div class="col-7 text-center m-3">
+                    <form action="addMovie" method="POST">
+                        <div class="form-group row">
+                            <label for="Title" class="col-3 col-form-label">
+                                Title</label>
+                            <div class="col-9">
+                                <input type="text" name="Title" 
+                                       id="Title" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="original_title" class="col-3 col-form-label">
+                                original title</label>
+                            <div class="col-9">
+                                <input type="text" name="original_title" 
+                                       id="original_title" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="overview" class="col-3 col-form-label">
+                                overview</label>
+                            <div class="col-9">
+                                <input type="text" name="overview" 
+                                       id="overview" class="form-control"/>
+                            </div>
+                        </div>
+                         <div class="form-group row">
+                            <label for="vote_average" class="col-3 col-form-label">
+                                vote_average</label>
+                            <div class="col-9">
+                                <input type="text" name="vote_average" 
+                                       id="vote_average" class="form-control"/>
+                            </div>
+                        </div>
+                          <div class="form-group row">
+                            <label for="vote_count" class="col-3 col-form-label">
+                                vote count</label>
+                            <div class="col-9">
+                                <input type="text" name="vote_count" 
+                                       id="vote_count" class="form-control"/>
+                            </div>
+                        </div>
+                             <div class="form-group row">
+                            <label for="poster_path" class="col-3 col-form-label">
+                                poster path</label>
+                            <div class="col-9">
+                                <input type="text" name="poster_path" 
+                                       id="poster_path" class="form-control"/>
+                            </div>
+                        </div>
+                            <div class="form-group row">
+                            <label for="original_language" class="col-3 col-form-label">
+                                original language</label>
+                            <div class="col-9">
+                                <input type="text" name="original_language" 
+                                       id="original_language" class="form-control"/>
+                            </div>
+                        </div>
+                          <div class="form-group row">
+                            <label for="backdrop_path" class="col-3 col-form-label">
+                                backdrop path</label>
+                            <div class="col-9">
+                                <input type="text" name="backdrop_path" 
+                                       id="backdrop_path" class="form-control"/>
+                            </div>
+                        </div>
+                       <div class="form-group row">
+                            <label for="release_date" class="col-3 col-form-label">
+                                release_date</label>
+                            <div class="col-9">
+                                <input type="text" name="release_date" 
+                                       id="release_date" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="adult" class="col-3 col-form-label">
+                                adult</label>
+                            <div class="col-9">
+                                <input type="text" name="adult" 
+                                       id="adult" class="form-control"/>
+                            </div>
+                        </div>
+                           <div class="form-group row">
+                            <label for="video" class="col-3 col-form-label">
+                                video</label>
+                            <div class="col-9">
+                                <input type="text" name="video" 
+                                       id="video" class="form-control"/>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Movie</button>
+                    </form>
+                </div>
+            </div>
+
+    <!-- End main body -->
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+  
+</html>
