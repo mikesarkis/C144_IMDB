@@ -24,7 +24,7 @@
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Featured titles</a>
+              <a class="nav-link" href="featuredmovies">Featured titles</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,6 +47,7 @@
    
         <div class="row m-4 border border-dark">
         <div class="col text-center m-3">
+            <p class="display-4">Displaying Results for "<span th:text="${query}">query</span>"</p>
             <table class="table table-striped">
                 <thead>
                     <tr class="text-left">

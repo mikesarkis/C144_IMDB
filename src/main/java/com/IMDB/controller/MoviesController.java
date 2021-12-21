@@ -26,6 +26,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import javax.servlet.http.HttpServletRequest;
+import static org.apache.logging.log4j.message.MapMessage.MapFormat.JSON;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,23 +66,44 @@ public class MoviesController {
         movies = callAPI(url);
         
         model.addAttribute("movies", movies);
+        model.addAttribute("query", query.toUpperCase());
         return "movies";
     }
     
     
     @GetMapping("displayMovie")
     public String displayMovieById(int id, Model model) {
-        System.out.println(id);
         Movie movie = movies.stream()
                 .filter(m -> m.getId() == id)
                 .findFirst()
                 .orElse(null);
         
+        String g = "";
+        for (int genreId : movie.getGenre_ids()) {
+            g += "+ " + returnGenre(genreId);
+        }
+        String genres = g.substring(2);
+        
         model.addAttribute(movie);
+        model.addAttribute("genres", genres);
         return "movie";
     }
     
-    public List<Movie> callAPI(URL queryURL) {
+    @GetMapping("featuredmovies")
+    public String displayFeaturedMovies(Model model) throws Exception {
+        URL query = new URL("https://api.themoviedb.org/3/movie/popular?api_key=" + KeyHolder.movieKey + " &language=en-US&page=1");
+        
+        movies = callAPI(query);
+
+        model.addAttribute("movies", movies);
+        return "featuredmovies";
+    }
+    
+    
+    
+    
+    
+    private List<Movie> callAPI(URL queryURL) {
     
         HttpURLConnection connection = null;
     
@@ -124,7 +146,7 @@ public class MoviesController {
     }
     
     
-    public static List<Movie> parseObjArr(String reponseBody) {
+    private static List<Movie> parseObjArr(String reponseBody) {
         JSONObject obj = new JSONObject(reponseBody);
         JSONArray movies = obj.getJSONArray("results");
         
@@ -142,10 +164,19 @@ public class MoviesController {
             String overview = movie.getString("overview");
             String release_date = movie.getString("release_date");
             double popularity = movie.getDouble("popularity");
+            boolean adult = movie.getBoolean("adult");
             
-            // needs "optString" instead of "getString" for nulls
+            // taking the JSONarray of ints from the API and converting
+            // them to an int []
+            JSONArray genre_ids_JSON = (JSONArray) movie.get("genre_ids");
+            int [] genre_ids = new int[genre_ids_JSON.length()];
+            for (int j = 0; j < genre_ids.length; j++) {
+                genre_ids[j] = genre_ids_JSON.optInt(j);
+            }
+            
+            // needs "optString" instead of "getString" for possible nulls,
             // along with initiating variable above so it can be
-            // an empty string is API call returns "null"
+            // an empty string if API call returns "null"
             imageURL = movie.optString("poster_path");
             
                         
@@ -156,8 +187,13 @@ public class MoviesController {
             newMovie.setRelease_date(release_date);
             newMovie.setPopularity(popularity);
             newMovie.setPoster_path("https://image.tmdb.org/t/p/original/" + imageURL);
-            
-            movieList.add(newMovie);
+            newMovie.setGenre_ids(genre_ids);
+            newMovie.setAdult(adult);
+
+            // filter out adult content
+            if (!newMovie.isAdult()) {
+                movieList.add(newMovie);
+            }
             
         }
         
@@ -171,10 +207,56 @@ public class MoviesController {
         return movieList;
     }
     
-    public static String parseObj(String responseBody) {
+    private static String parseObj(String responseBody) {
         JSONObject obj = new JSONObject(responseBody);
         System.out.println(obj.getString("imdb_id"));
         return null;
         
     }
+    
+    private String returnGenre(int index) {
+        switch(index) {
+            case 12:
+                return "Adventure ";
+            case 14:
+                return "Fantasy ";
+            case 16:
+                return "Animation  ";
+            case 18:
+                return "Drama ";
+            case 27:
+                return "Horror ";
+            case 28:
+                return "Action ";
+            case 35:
+                return "Comedy ";
+            case 36:
+                return "History ";
+            case 37:
+                return "Western ";
+            case 53:
+                return "Thriller ";
+            case 80:
+                return "Crime ";
+            case 99:
+                return "Documentary ";
+            case 878:
+                return "Science Fiction ";
+            case 9648:
+                return "Mystery ";
+            case 10402:
+                return "Music ";
+            case 10751:
+                return "Family ";
+            case 10749:
+                return "Romance ";
+            case 10752:
+                return "War ";
+            case 10770:
+                return "TV Movie ";
+            default:
+                return "";
+        }
+    }
+    
 }
