@@ -17,9 +17,12 @@ import java.util.List;
  */
 public interface movieDao {
     public Movie add_Movie(Movie temp);
+    public List<Movie> getAllSavedFavorites();    
+    public void remove_Movie(Movie temp);
+    
+    
     public void add_company_movie(int companyid, int movieid);
     public void add_Location_movie(int locationid, int movieid, String date);
-    public void remove_Movie(Movie temp);
     public void edit_Movie(int id, Movie temp);
     public Movie get_Movie_by_id(int id);
     public List<Movie> get_Movie_by_title(String title);

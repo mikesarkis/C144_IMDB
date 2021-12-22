@@ -34,6 +34,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  *
@@ -78,13 +79,25 @@ public class MoviesController {
                 .findFirst()
                 .orElse(null);
         
+        List<Movie> favoriteMovies = movdao.getAllSavedFavorites();
+        
+        Movie isFavoriteInDB = favoriteMovies.stream()
+                .filter(m -> m.getId() == id)
+                .findFirst()
+                .orElse(null);
+        
+        
+        
+        if (isFavoriteInDB == null) movie.setFavorite(false);
+        else movie.setFavorite(true);
+        
         String g = "";
         for (int genreId : movie.getGenre_ids()) {
             g += "+ " + returnGenre(genreId);
         }
         String genres = g.substring(2);
         
-        model.addAttribute(movie);
+        model.addAttribute("movie", movie);
         model.addAttribute("genres", genres);
         return "movie";
     }
@@ -97,6 +110,39 @@ public class MoviesController {
 
         model.addAttribute("movies", movies);
         return "featuredmovies";
+    }
+    
+    
+    @PostMapping("addorremovefavorites")
+    public String addMovieToFavorites(Movie movie, HttpServletRequest request, Model model) {
+        int movieId = Integer.parseInt(request.getParameter("movieid"));
+        int movieRating = Integer.parseInt(request.getParameter("rate"));
+        
+        Movie faveMovie = movies.stream()
+                .filter(m -> m.getId() == movieId)
+                .findFirst()
+                .orElse(null);
+        
+        
+        if (faveMovie.isFavorite()) {
+            movdao.remove_Movie(faveMovie);
+            faveMovie.setFavorite(false);
+        } else {
+            faveMovie.setRating(movieRating);
+            faveMovie.setFavorite(true);
+            movdao.add_Movie(faveMovie);
+        }
+
+        String g = "";
+        for (int genreId : faveMovie.getGenre_ids()) {
+            g += "+ " + returnGenre(genreId);
+        }
+        String genres = g.substring(2);        
+        
+        model.addAttribute("movie", faveMovie);
+        model.addAttribute("genres", genres);
+        
+        return "movie";
     }
     
     
@@ -165,6 +211,7 @@ public class MoviesController {
             String release_date = movie.getString("release_date");
             double popularity = movie.getDouble("popularity");
             boolean adult = movie.getBoolean("adult");
+            boolean favorite = false;
             
             // taking the JSONarray of ints from the API and converting
             // them to an int []

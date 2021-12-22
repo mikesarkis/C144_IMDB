@@ -92,25 +92,29 @@
                     <p th:text="${movie.overview}">synopsis</p>
                     <h4 th:text="${genres}">genres</h4>
                     <h6>Released <span th:text="${movie.release_date}">date</span></h6>
-                      <form action="ratemovie" name="ratemovie">
-                      <div class="rate mr-2">
-                        <input type="radio" id="star5" name="rate" value="5" />
-                        <label for="star5" title="5 stars">5 stars</label>
-                        <input type="radio" id="star4" name="rate" value="4" />
-                        <label for="star4" title="4 stars">4 stars</label>
-                        <input type="radio" id="star3" name="rate" value="3" />
-                        <label for="star3" title="3 stars">3 stars</label>
-                        <input type="radio" id="star2" name="rate" value="2" />
-                        <label for="star2" title="2 stars">2 stars</label>
-                        <input type="radio" id="star1" name="rate" value="1" />
-                        <label for="star1" title="1 star">1 star</label>
+                    
+                    <form action="addorremovefavorites" method="POST" name="addorremovefavorites">
+                    <div class="rate mr-2">
+                      <input type="radio" id="star5" name="rate" value="5" />
+                      <label for="star5" title="5 stars">5 stars</label>
+                      <input type="radio" id="star4" name="rate" value="4" />
+                      <label for="star4" title="4 stars">4 stars</label>
+                      <input type="radio" id="star3" name="rate" value="3" />
+                      <label for="star3" title="3 stars">3 stars</label>
+                      <input type="radio" id="star2" name="rate" value="2" />
+                      <label for="star2" title="2 stars">2 stars</label>
+                      <input type="radio" checked="checked" id="star1" name="rate" value="1" />
+                      <label for="star1" title="1 star">1 star</label>
                     </div>
-                      </form>
-                    <div style="clear: both">
+                        <div style="clear: both" >
+                            <input type="hidden" name="movieid" th:value="${movie.id}" />
+                            <input th:if="${!movie.favorite}" type="submit" class="btn btn-success mt-3" value="Add to Your Favorites" />
+                            <input th:if="${movie.favorite}" type="submit" class="btn btn-danger mt-3" value="Remove from Your Favorites" />
+                        </div>
+                    </form>
+<!--                    <div style="clear: both">
                         <form action="addtofavorite" name="addtofavorite">
-                            <input type="submit" class="btn btn-success mt-3" value="Add to Your Favorites" />
-                        </form>
-                    </div>
+                        </form>-->
                     </div>
                 </div>
              </div>

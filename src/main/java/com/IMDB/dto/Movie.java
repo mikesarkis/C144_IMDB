@@ -11,19 +11,37 @@ package com.IMDB.dto;
  */
 public class Movie {
     private int id;
-    private double vote_average;
-    private int vote_count;
+//    private double vote_average;
+//    private int vote_count;
     private double popularity;
     private String title;
-    private String original_title;
-    private String original_language;
+//    private String original_title;
+//    private String original_language;
     private String overview;
-    private String backdrop_path;
+//    private String backdrop_path;
     private String release_date;
     private boolean adult;
-    private boolean video;
+//    private boolean video;
     private String poster_path;
     private int [] genre_ids;
+    private int rating;
+    private boolean favorite;
+
+    public int getRating() {
+        return rating;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
 
     public int[] getGenre_ids() {
         return genre_ids;
@@ -49,21 +67,21 @@ public class Movie {
         this.title = title;
     }
 
-    public double getVote_average() {
-        return vote_average;
-    }
-
-    public void setVote_average(double vote_average) {
-        this.vote_average = vote_average;
-    }
-
-    public int getVote_count() {
-        return vote_count;
-    }
-
-    public void setVote_count(int vote_count) {
-        this.vote_count = vote_count;
-    }
+//    public double getVote_average() {
+//        return vote_average;
+//    }
+//
+//    public void setVote_average(double vote_average) {
+//        this.vote_average = vote_average;
+//    }
+//
+//    public int getVote_count() {
+//        return vote_count;
+//    }
+//
+//    public void setVote_count(int vote_count) {
+//        this.vote_count = vote_count;
+//    }
 
     public double getPopularity() {
         return popularity;
@@ -73,21 +91,21 @@ public class Movie {
         this.popularity = popularity;
     }
 
-    public String getOriginal_title() {
-        return original_title;
-    }
-
-    public void setOriginal_title(String original_title) {
-        this.original_title = original_title;
-    }
-
-    public String getOriginal_language() {
-        return original_language;
-    }
-
-    public void setOriginal_language(String original_language) {
-        this.original_language = original_language;
-    }
+//    public String getOriginal_title() {
+//        return original_title;
+//    }
+//
+//    public void setOriginal_title(String original_title) {
+//        this.original_title = original_title;
+//    }
+//
+//    public String getOriginal_language() {
+//        return original_language;
+//    }
+//
+//    public void setOriginal_language(String original_language) {
+//        this.original_language = original_language;
+//    }
 
     public String getOverview() {
         return overview;
@@ -97,13 +115,13 @@ public class Movie {
         this.overview = overview;
     }
 
-    public String getBackdrop_path() {
-        return backdrop_path;
-    }
-
-    public void setBackdrop_path(String backdrop_path) {
-        this.backdrop_path = backdrop_path;
-    }
+//    public String getBackdrop_path() {
+//        return backdrop_path;
+//    }
+//
+//    public void setBackdrop_path(String backdrop_path) {
+//        this.backdrop_path = backdrop_path;
+//    }
 
     public String getRelease_date() {
         return release_date;
@@ -121,13 +139,13 @@ public class Movie {
         this.adult = adult;
     }
 
-    public boolean isVideo() {
-        return video;
-    }
-
-    public void setVideo(boolean video) {
-        this.video = video;
-    }
+//    public boolean isVideo() {
+//        return video;
+//    }
+//
+//    public void setVideo(boolean video) {
+//        this.video = video;
+//    }
 
     public String getPoster_path() {
         return poster_path;

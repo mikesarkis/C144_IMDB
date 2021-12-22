@@ -41,15 +41,15 @@ public class movieDaoDB implements movieDao{
             Movie movie = new Movie();
             movie.setId(rs.getInt("id"));
             movie.setTitle(rs.getString("title"));
-            movie.setOriginal_title(rs.getString("original_title "));
+//            movie.setOriginal_title(rs.getString("original_title "));
             movie.setOverview(rs.getString("overview"));
-            movie.setVote_average(rs.getDouble("vote_average"));
-            movie.setVote_count(rs.getInt("vote_count"));
-            movie.setOriginal_language(rs.getString("original_language"));
-            movie.setBackdrop_path(rs.getString("backdrop_path"));
+//            movie.setVote_average(rs.getDouble("vote_average"));
+//            movie.setVote_count(rs.getInt("vote_count"));
+//            movie.setOriginal_language(rs.getString("original_language"));
+//            movie.setBackdrop_path(rs.getString("backdrop_path"));
             movie.setRelease_date(rs.getString("release_date"));
             movie.setAdult(rs.getBoolean("adult"));
-            movie.setVideo(rs.getBoolean("video"));
+//            movie.setVideo(rs.getBoolean("video"));
             movie.setPoster_path(rs.getString("poster_path"));
             return movie;
         }
@@ -58,12 +58,38 @@ public class movieDaoDB implements movieDao{
 
     @Override
     public Movie add_Movie(Movie temp) {
-        final String insert_movie = "INSERT INTO movie(title,original_title,overview,vote_average,vote_count ,original_language,backdrop_path,release_date,release_date,adult,video, poster_path   ) "+ " VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-        jdbc.update(insert_movie, temp.getTitle(), temp.getOriginal_title(),temp.getOverview(), temp.getVote_average(), temp.getVote_count(), temp.getOriginal_language(), temp.getBackdrop_path(), temp.getRelease_date(), temp.isAdult(), temp.isVideo(), temp.getPoster_path());
-        int newID = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
-        temp.setId(newID);
+        final String insert_movie = "INSERT INTO movie (id, title, overview, release_date, popularity, poster_path, adult, rating, favorite) VALUES(?,?,?,?,?,?,?,?,?);";
+        jdbc.update(insert_movie,
+                temp.getId(),
+                temp.getTitle(),
+                temp.getOverview(),
+                temp.getRelease_date(),
+                temp.getPopularity(),
+                temp.getPoster_path(),
+                temp.isAdult(),
+                temp.getRating(),
+                temp.isFavorite());
+        
         return temp;
     }
+    
+    @Override
+    public List<Movie> getAllSavedFavorites() {
+        final String getAllFavorites = "SELECT * FROM movie;";
+        
+        return jdbc.query(getAllFavorites, new MovieMapper());
+    }
+    
+//    @Override
+//    public Movie add_Movie(Movie temp) {
+//        final String insert_movie = "INSERT INTO movie(title,original_title,overview,vote_average,vote_count ,original_language,backdrop_path,release_date,release_date,adult,video, poster_path   ) "+ " VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+//        jdbc.update(insert_movie, temp.getTitle(), temp.getOriginal_title(),temp.getOverview(), temp.getVote_average(), temp.getVote_count(), temp.getOriginal_language(), temp.getBackdrop_path(), temp.getRelease_date(), temp.isAdult(), temp.isVideo(), temp.getPoster_path());
+//        int newID = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+//        temp.setId(newID);
+//        return temp;
+//    }
+    
+    
     @Override
     public void add_company_movie(int companyid, int movieid) {
        final String insert_relation = "INSERT INTO movie_company(movieID, productionCompanyID) "+ " VALUES(?,?)";
@@ -77,17 +103,17 @@ public class movieDaoDB implements movieDao{
 
     @Override
     public void remove_Movie(Movie temp) {
-        final String delete_relation = "DELETE * FROM movie_location WHERE movieID = ?";
-        jdbc.update(delete_relation, temp.getId());
-        final String delete_movie = "DELETE * FROM movie WHERE id = ?";
+//        final String delete_relation = "DELETE * FROM movie_location WHERE movieID = ?";
+//        jdbc.update(delete_relation, temp.getId());
+        final String delete_movie = "DELETE FROM movie WHERE id = ?";
         jdbc.update(delete_movie, temp.getId());
     }
 
     @Override
     public void edit_Movie(int id, Movie temp) {
-        final String update_movie = "UPDATE movie SET title = ? , original_title = ? , overview = ? ,   vote_average = ? ,  vote_count = ?,  original_language = ? , backdrop_path = ? , release_date = ? , adult = ?, video = ?,poster_path = ?  "
-                + " WHERE id = ?";
-        jdbc.update(update_movie, temp.getTitle(), temp.getOriginal_title(),temp.getOverview(), temp.getVote_average(), temp.getVote_count(), temp.getOriginal_language(), temp.getBackdrop_path(), temp.getRelease_date(), temp.isAdult(), temp.isVideo(), temp.getPoster_path() , id );
+//        final String update_movie = "UPDATE movie SET title = ? , original_title = ? , overview = ? ,   vote_average = ? ,  vote_count = ?,  original_language = ? , backdrop_path = ? , release_date = ? , adult = ?, video = ?,poster_path = ?  "
+//                + " WHERE id = ?";
+//        jdbc.update(update_movie, temp.getTitle(), temp.getOriginal_title(),temp.getOverview(), temp.getVote_average(), temp.getVote_count(), temp.getOriginal_language(), temp.getBackdrop_path(), temp.getRelease_date(), temp.isAdult(), temp.isVideo(), temp.getPoster_path() , id );
     }
 
     @Override
